@@ -41,7 +41,7 @@ def stan_last_name(last_name):
 def stan_first_name(first_name):
    return first_name.capitalize()
 
-#  Mid
+#  Middle initials should be capitalized. If they do not exist, then just put X
 def stan_mid_init(mid_init):
    default_mid_init = "X"
    if len(mid_init):
