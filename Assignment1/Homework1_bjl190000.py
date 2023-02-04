@@ -4,6 +4,8 @@ import pickle
 import csv
 import re
 
+
+#  Person stores important employee information and 
 class Person:
    def __init__(self, first_name, last_name, middle_name, id, phone_num):
       self.first_name = first_name
@@ -12,6 +14,10 @@ class Person:
       self.id = id
       self.phone_num = phone_num
    
+   #  Prints employee information in the following format:
+   #  Employee id: <id>
+   #     <first_name> <mid> <last>
+   #     <phone_num>
    def display(self):
       format_vars = {"first_name" : self.first_name, 
                      "middle_name" : self.middle_name, 
@@ -25,12 +31,17 @@ class Person:
             """ 
       print(display_format.format(**format_vars))
 
+#functions to standardize employee information fields into their correct format
+
+#  Last names should be Capital Case
 def stan_last_name(last_name):
    return last_name.capitalize()
 
+#  First names should be Capital Case
 def stan_first_name(first_name):
    return first_name.capitalize()
 
+#  Mid
 def stan_mid_init(mid_init):
    default_mid_init = "X"
    if len(mid_init):
@@ -38,6 +49,7 @@ def stan_mid_init(mid_init):
    else:
       return default_mid_init
 
+# IDs should be two capital letters followed by 4 digits: AB1234
 def stan_id(id):
    id_regex = "[A-Z]{2}\d{4}"
    if re.fullmatch(id_regex, id):
@@ -49,7 +61,7 @@ def stan_id(id):
       id = new_id
    return id
 
-
+# Phone number uses the following format: XXX-XXX-XXXX
 def stan_phone_num(phone_num):
    phone_num_format = "\d{3}[-]\d{3}[-]\d{4}"
    if re.fullmatch(phone_num_format, phone_num):
@@ -94,12 +106,16 @@ def process_input_file(input_file_path):
 
 
 if __name__ == "__main__":
+   #get the file path from command line arguments
+   #command should look like python3 <this_file_name>.py data.csv
    args_list = sys.argv
    if len(args_list) <= 1:
       print("Error, no input file specified")
       sys.exit(1)
    input_file_name = args_list[1]
    input_file_path = os.path.relpath(input_file_name)
+   
+   #process and write the data from the csv into a disctionary and save it
    persons = process_input_file(input_file_path)
    pickle.dump(persons, open("persons.p", "wb"))
 
