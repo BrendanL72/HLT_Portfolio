@@ -87,6 +87,8 @@ def process_input_file(input_file_path):
          #add stuff
          if id not in persons.keys():
             persons[id] = Person(last_name, first_name, mid_init, id, phone_num)
+         else:
+            print("Error, duplicate id found")
    return persons
 
 
