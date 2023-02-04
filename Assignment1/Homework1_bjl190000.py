@@ -38,7 +38,7 @@ def stan_mid_init(mid_init):
    else:
       return default_mid_init
 
-def stan_id(id, ):
+def stan_id(id):
    id_regex = "[A-Z]{2}\d{4}"
    if re.fullmatch(id_regex, id):
       pass
