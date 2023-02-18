@@ -6,8 +6,10 @@ Portfolio for CS4395 Human Language Technologies at UTDallas
 
 ### Assignment 1: Text Processing
 Python review of object and string manipulation
+
 [Click here](https://github.com/BrendanL72/HLT_Portfolio/tree/main/Assignment1)
 
 ### Assignment 2: Guessing Game
 An early exploration into using NLTK to statistically analyze a passage
+
 [Click here](https://github.com/BrendanL72/HLT_Portfolio/tree/main/Assignment2)
