@@ -17,4 +17,4 @@ An early exploration into using NLTK to statistically analyze a passage
 ### Assignment 3: WordNet
 Notebook demonstrating basic functionalities of the WordNet python library
 
-[Click here](https://github.com/BrendanL72/HLT_Portfolio/tree/main/Assignment3)
+[Click here](Assignment3/Homework3_bjl190000.pdf)
