@@ -13,3 +13,8 @@ Python review of object and string manipulation
 An early exploration into using NLTK to statistically analyze a passage
 
 [Click here](https://github.com/BrendanL72/HLT_Portfolio/tree/main/Assignment2)
+
+### Assignment 3: WordNet
+Notebook demonstrating basic functionalities of the WordNet python library
+
+[Click here](Assignment3/Homework3_bjl190000.pdf)
