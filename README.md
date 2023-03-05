@@ -27,5 +27,10 @@ Contains Python scripts creating n-gram language models for English, French, and
 
 [Click here](Assignment4)
 
+## Assignment 5: Sentence Parsing
+Hand-drawn versions of the PSG, Depedency Graph, and SRL sentence parsing methods
+
+[Click here](Assignment5/Homework5_bjl190000.pdf)
+
 ## Contributors:
 Brendan Lim
