@@ -35,5 +35,7 @@ Hand-drawn versions of the PSG, Depedency Graph, and SRL sentence parsing method
 ## Assignment 6: Web Crawling
 Python script to scrape the contents of the Old School RuneScape wiki to create a knowledge base for a future chatbot
 
+[Click here](Assignment6)
+
 ## Contributors:
 Brendan Lim
