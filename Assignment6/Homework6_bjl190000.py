@@ -2,9 +2,12 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
 import os, shutil
 import re
+import pickle
 
 
 def is_signif_link(link_text):
@@ -32,7 +35,6 @@ def get_relevant_urls(url, max_links):
       l = link.get('href')
       if l not in links and is_signif_link(str(l)):
          links.add(l)
-         print(l)
          counter += 1
          if counter > max_links:
             break
@@ -66,59 +68,68 @@ def extract_sentences(f_name):
    raw_text = f_handle.read()
 
    #remove most whitespace from text
-   text_chunks = [chunk for chunk in raw_text.splitlines() if not re.match(r'^\s*$', chunk)]
+   text_chunks = [chunk for chunk in raw_text.splitlines()]
    #get sentences and write them to file
    sentences = sent_tokenize(" ".join(text_chunks))
    with open(f_name + "_sentences", "w", encoding = 'utf-8') as f_handle:
       for s in sentences:
          f_handle.write(s + "\n")
 
-# combine_corpus gets a list of files and combiens their text into a 
-def combine_corpus(file_name_list, path):
-   text = ""
-   for fname in file_name_list:
-      f_handle = open(path + fname, encoding='utf-8')
-      text = text + "\n" + f_handle.read()
-
-   return text
-
-
 # gets a number of highest frequency tokens from a corpus of text using tf-idf
-def extract_terms(text, num_terms):
-   tokens = [token.lower() for token in text.split()]
-   reduced_tokens = [t for t in tokens 
-                     if (t.isalpha() and t not in stopwords.words('english'))]
+def extract_terms(text_files, num_terms):
+   #find tf-idf of all words in text
+   #These settings make SciKit's tfidf preprocess the text to remove stopwords, punctuation, and lowercase the words
+   tfidf = TfidfVectorizer(input='filename',stop_words={'english'}, lowercase=True, token_pattern=r"\b[a-zA-Z]\w+[a-zA-Z]\b")
+   thing = tfidf.fit_transform(text_files)
 
-   #find word frequency
-   wnl = WordNetLemmatizer()
-   lemmas = [wnl.lemmatize(t) for t in reduced_tokens]
-   lemma_set = set(lemmas)
-   lemma_count  = {n:lemmas.count(n) for n in lemma_set}
-   most_common_nouns = sorted(lemma_count.items(), key=lambda x: x[1], reverse=True)
-   print(most_common_nouns[:num_terms])
+   tfidf_dict = dict(zip(tfidf.get_feature_names_out(),tfidf.idf_))
+   sorted_tfidf_values = sorted(tfidf_dict.items(), key=lambda x: x[1], reverse=True)
+   print(sorted_tfidf_values[:num_terms])
+   return(tfidf_dict)
+
+def find_all_sentences(text_files, term):
+   sentences = []
+   for tf in text_files:
+      fhandle = open(tf, "r", encoding='utf-8')
+      for line in fhandle:
+         if term in line or term.capitalize() in line:
+            sentences.append(line)
+   return sentences
 
 if __name__ == "__main__":
    url = 'https://oldschool.runescape.wiki/w/Woodcutting'
-   relevant_links = get_relevant_urls(url, 15)
+   relevant_links = get_relevant_urls(url, 50)
    print("Scraping text")
 
-   folder_name = "text/"
-   if os.path.exists(folder_name):
-      shutil.rmtree(folder_name)
-   os.mkdir(folder_name)
+   text_folder_name = "text/"
+   if os.path.exists(text_folder_name):
+      shutil.rmtree(text_folder_name)
+   os.mkdir(text_folder_name)
 
    scrape_text(url, "")
    for l in relevant_links:
-      print(str(l))
       scrape_text(l, 'https://oldschool.runescape.wiki')
    
-   for fname in os.listdir(folder_name):
-      extract_sentences(folder_name + fname)
+   for fname in os.listdir(text_folder_name):
+      extract_sentences(text_folder_name + fname)
 
    file_list = []
-   for fname in os.listdir(folder_name):
+   sentence_file_list = []
+   for fname in os.listdir(text_folder_name):
       if "sentences" not in fname:
-         file_list.append(fname)
+         file_list.append(text_folder_name + fname)
+      else:
+         sentence_file_list.append(text_folder_name + fname)
 
-   text = combine_corpus(file_list, folder_name)
-   extract_terms(text, 25)
+   extract_terms(file_list, 40)
+
+   most_important_terms = ["firemaking", "fire", "axe", "log", "canoe", "farming", "fletching", "tree", "experience", "attack", "bird nest", "woodcutting"]
+   #create a base of knowledge for each important term
+   term_dict = dict()
+   for term in most_important_terms:
+      print(term)
+      term_dict[term] = find_all_sentences(sentence_file_list, term)
+      print(term_dict[term][0])
+
+   pickle_file = open("woodcutting_knowledge_base", "wb")
+   pickle.dump(term_dict, pickle_file)
