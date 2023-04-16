@@ -1,0 +1,153 @@
+hello:
+  response: 
+  - "Hello! My name is OSRSChatBot. I'm a personal assistant for your OSRS needs. What is your OSRS username?"
+  examples:
+  - ""
+  required_words: 
+  - ""
+
+hello_there:
+  response:
+  - "Hello to you too, {}."
+  examples:
+  - "Hello there!"
+  required_words:
+  - "hello"
+  - "Hello"
+  - "hi"
+  - "Hi"
+
+welcome_back:
+  response: 
+  - "Welcome back, {}! What would you like to discuss?"
+  examples:
+  - ""
+  required_words:
+  - ""
+
+new_user:
+  response: 
+  - "Nice to meet you, {}! What would you like to discuss?"
+  examples:
+  - ""
+  required_words:
+  - ""
+
+unsure:
+  response: 
+  - "I'm not really sure what you mean by '{}'."
+  examples:
+  - ""
+  required_words:
+  - ""
+
+hypocrisy:
+  response: 
+  - "I'm sorry, I seem to have poor memory..."
+  examples:
+  - "I thought you said this before"
+  required_words:
+  - "earlier"
+  - "said"
+  - "before"
+
+goodbye:
+  response: 
+  - "Goodbye."
+  examples:
+  - "See you later"
+  - "Goodbye OSRS bot."
+  - "Adios"
+  - "Bye"
+  - "goodbye"
+  required_words:
+  - "Goodbye"
+  - "Adios"
+  - "Bye"
+  - "Ciao"
+  - "Later"
+
+gratitude:
+  response: 
+  - "You're welcome! Is there anything else I can do for you?"
+  examples:
+  - "Thank you for the information."
+  - "Thanks for the help"
+  required_words:
+  - "Thank"
+  - "Appreciated"
+
+skill_issue:
+  response: 
+  - "Based on your current level of {}, you can{} {} {}"
+  examples:
+  - "What level do I need to equip a bronze sword?"
+  - "What level is required to?"
+  required_words:
+  - "level"
+  - "required"
+  - "need"
+  - "Attack"
+  - "Woodcutting"
+  - "Firemaking"
+  - "Magic"
+  - "Strength"
+
+opinion:
+  response: 
+  - "I like {}."
+  examples:
+  - "What do you think of?"
+  - "What is your opinion of?"
+  required_words:
+  - "think"
+  - "opinion"
+  - "thoughts"
+
+elab_opinion:
+  response:
+  - "{}"
+  examples:
+  - "Can you elaborate on that?"
+  - "What do you mean by that?"
+  - "Why do you think that?"
+  - "Tell me more"
+  - "Why do you like woodcutting?"
+  required_words:
+  - "mean"
+  - "think"
+  - "elaborate"
+
+tip:
+  response:
+  - "{}\nAsk me again for another tip."
+  examples:
+  - "Do you have any tips for"
+  - "Tell me something about"
+  required_words:
+  - "tip"
+  - "tips"
+  - "something"
+  - "information"
+
+change_topic:
+  response:
+  - "Okay, I was getting bored of talking about {}{}."
+  - "What would you like to talk about instead of {}{}?"
+  examples:
+  - "Let's change topics"
+  - "Let's talk about something else"
+  - "Let's switch topics"
+  required_words:
+  - "change"
+  - "switch"
+  - "topics"
+  - "else"
+
+no_prev_topic:
+  response:
+  - "We weren't talking about anything in the first place!"
+  examples:
+  - ""
+  required_words:
+  - ""
