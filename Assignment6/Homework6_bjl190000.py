@@ -68,9 +68,9 @@ def extract_sentences(f_name):
    raw_text = f_handle.read()
 
    #remove most whitespace from text
-   text_chunks = [chunk for chunk in raw_text.splitlines()]
+   text_chunks = [chunk for chunk in raw_text.splitlines() if chunk != ""]
    #get sentences and write them to file
-   sentences = sent_tokenize(" ".join(text_chunks))
+   sentences = sent_tokenize("\n".join(text_chunks))
    with open(f_name + "_sentences", "w", encoding = 'utf-8') as f_handle:
       for s in sentences:
          f_handle.write(s + "\n")

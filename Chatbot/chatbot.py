@@ -31,7 +31,6 @@ def get_message_similarity(user_tokens, related_tokens, required_tokens):
             break
 
    num_common_tokens = 0
-   print(related_tokens)
    if has_required_token:
       for t in user_tokens:
          for rt in related_tokens:
@@ -60,9 +59,6 @@ def choose_response(responses, user_tokens):
       probs[r] = get_message_similarity(user_tokens, related_tokens=examples, required_tokens=req_tokens)
       if probs[r] > 0.1:
          has_likely_response = True
-
-   print(user_tokens)
-   print(probs)
 
    if has_likely_response:
       return max(probs.items(), key=lambda e: e[1])[0]
@@ -103,9 +99,6 @@ def extract_sentences(wiki_text):
    text_chunks = [chunk for chunk in wiki_text.splitlines() if chunk != ""]
    #get sentences and write them to file
    sentences = sent_tokenize(" ".join(text_chunks))
-   with open(text_chunks[0] + "_sentences", "w", encoding = 'utf-8') as f_handle:
-      for s in sentences:
-         f_handle.write(s + "\n")
    return sentences
 
 def filter_sentences(sentences):
@@ -167,7 +160,7 @@ if __name__ == "__main__":
 
    next_response_type = ""
    
-   while (next_response_type != "goodbye"):
+   while (user_input != "end"):
       respond(responses, bot_response, response_inputs)
       user_input = input()
       response_inputs = []
@@ -229,7 +222,6 @@ if __name__ == "__main__":
                wiki_response = "Elaborate on what? We haven't talked about anything yet!"
             response_inputs = [wiki_response]
          elif next_response_type == "tip":
-            print(reversed(input_tags))
             #look up OSRS wiki for information
             for t in reversed(input_tags):
                if t[1].startswith("NN") or t[1] == "VBD" or t[1] == "VBG" and current_topic == "":
