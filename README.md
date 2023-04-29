@@ -38,12 +38,12 @@ Python script to scrape and process the contents of the Old School RuneScape wik
 [Click here](Assignment6)
 
 ## Assignment 7: ACL Research Paper Summary
-Summary of the paper: "Better Language Model with Hypernym Class Prediction", an entry into the 60th Annual Association for Computational Linguistics meeting. The paper focuses on changing the latest and greatest transformer model
+Summary of the paper: "Better Language Model with Hypernym Class Prediction", an entry into the 60th Annual Association for Computational Linguistics meeting. The paper focuses on changing the latest and greatest transformer model by using hypernym classes from the WordNet library. It shows promise with identifying rarer words more accurately that the transformer model would struggle with.
 
 [Click here](Assignment7/HW7_bjl190000.docx)
 
 ## Assignment 8: Text Classification using Machine Learning Techniques
-Exploration of various machine learning algorithms like Naive Bayes and Logistic Regression to determine whether article headlines are clickbait or not.
+Exploration of various machine learning algorithms like Naive Bayes and Logistic Regression to determine whether article headlines are clickbait or not. Uses grid search to optimize a neural network's parameters.
 
 [Click here](Assignment8/HW8_bjl190000.pdf)
 
