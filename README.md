@@ -1,5 +1,10 @@
 # Human Language Technologies Portfolio
-A Natural Language Processing Portfolio for CS4395 Human Language Technologies at UTDallas
+A Natural Language Processing Portfolio for CS4395 Human Language Technologies at the University of Texas at Dallas.
+
+## Reflection
+I came into Natural Language Technologies hoping to learn about all the techniques we use nowadays to get the hyperrealistic AI language models that have been coming out in the past few years. And while I acheived that goal, I'm not so certain that we can ever truly 100% replicate human language. Almost all the techniques we've learned are computational implementations of models of language like sentence structure or noun hierarchy. And models, while useful, are always wrong. That being said, I will be keeping up with NLP by continuining to read the latest research papers, as we are  in a machine learning golden age right now and I'm also interested in how new NLP and ML techniques will be applied through the software world and in my future employment.
+
+I plan on continuing my OSRS chatbot. It requires a magnitude of effort more than I expected to account for the intracacies of the game and the special formatting of the wiki.
 
 ## Assignment 0: Introduction
 A brief overview of the ideas, approaches, and my personal interest in Natural Language Processing.
